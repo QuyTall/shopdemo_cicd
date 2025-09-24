@@ -1,0 +1,76 @@
+<section class="relative">
+  <!-- Carousel wrapper -->
+  <div class="relative w-full overflow-hidden">
+    <!-- Slides -->
+    <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
+      <div class="min-w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white"
+           style="background-image: url('https://picsum.photos/id/1015/1200/500');">
+        <div class="bg-black/50 p-6 rounded-xl text-center">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">Ưu đãi siêu HOT</h2>
+          <p class="mb-4 text-lg">Giảm giá lên đến 50% cho các sản phẩm mới</p>
+          <a href="#products" class="bg-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-indigo-500">
+            Mua ngay
+          </a>
+        </div>
+      </div>
+
+      <div class="min-w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white"
+           style="background-image: url('https://picsum.photos/id/1021/1200/500');">
+        <div class="bg-black/50 p-6 rounded-xl text-center">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">Sản phẩm mới 2025</h2>
+          <p class="mb-4 text-lg">Khám phá bộ sưu tập mới nhất ngay hôm nay</p>
+          <a href="#products" class="bg-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-indigo-500">
+            Xem ngay
+          </a>
+        </div>
+      </div>
+
+      <div class="min-w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white"
+           style="background-image: url('https://picsum.photos/id/1035/1200/500');">
+        <div class="bg-black/50 p-6 rounded-xl text-center">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">Freeship toàn quốc</h2>
+          <p class="mb-4 text-lg">Áp dụng cho đơn hàng từ 299K</p>
+          <a href="#products" class="bg-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-indigo-500">
+            Mua sắm ngay
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <button id="prev"
+            class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/70">
+      &#10094;
+    </button>
+    <button id="next"
+            class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/70">
+      &#10095;
+    </button>
+  </div>
+</section>
+
+<script>
+  const carousel = document.getElementById("carousel");
+  const slides = carousel.children.length;
+  let index = 0;
+
+  function showSlide(i) {
+    carousel.style.transform = `translateX(-${i * 100}%)`;
+  }
+
+  document.getElementById("next").addEventListener("click", () => {
+    index = (index + 1) % slides;
+    showSlide(index);
+  });
+
+  document.getElementById("prev").addEventListener("click", () => {
+    index = (index - 1 + slides) % slides;
+    showSlide(index);
+  });
+
+  // Auto slide
+  setInterval(() => {
+    index = (index + 1) % slides;
+    showSlide(index);
+  }, 5000);
+</script>
