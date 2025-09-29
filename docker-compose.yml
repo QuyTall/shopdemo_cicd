@@ -1,0 +1,23 @@
+services:
+  backend-shopdemo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_USERNAME:-local}/shopdemo-backend:latest
+    container_name: shopdemo-backend
+    environment:
+      - NODE_ENV=Production
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+    restart: always
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+networks:
+  app-network:
+    driver: bridge
